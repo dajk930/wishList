@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+      <style media="screen">
+          .error {
+              color: red;
+          }
+      </style>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <meta charset="utf-8">
+      <title>Login Registration</title>
+  </head>
+  <body>
+      <div class="container">
+          <div class="row">
+              <div class="register col">
+                  <h1>Register</h1>
+                  <form action="/register" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <!--Use this section of code (24-30) to implement tags in your html for each error -->
+                      {% if messages %}
+                              {% for message in messages %}
+                                  {%if "fname" in message.tags%}
+                                  <p{% if message.tags %} class="{{ message.tags }} error"{% endif %}>{{ message }}</p>
+                                {%endif%}
+                              {% endfor %}
+                      {% endif %}
+                      <input type="text" class="form-control" id="name" name="name" placeholder="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <!--Use this section of code (24-30) to implement tags in your html for each error -->
+                        {% if messages %}
+                                {% for message in messages %}
+                                    {%if "username" in message.tags%}
+                                    <p{% if message.tags %} class="{{ message.tags }} error"{% endif %}>{{ message }}</p>
+                                  {%endif%}
+                                {% endfor %}
+                        {% endif %}
+                        <input type="text" class="form-control" id="username" name="username" placeholder="username">
+                      </div>
+                      <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      {% if messages %}
+                              {% for message in messages %}
+                                  {%if "reg_password" in message.tags%}
+                                  <p{% if message.tags %} class="{{ message.tags }} error"{% endif %}>{{ message }}</p>
+                                {%endif%}
+                              {% endfor %}
+                      {% endif %}
+                      <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+                    </div>
+                    <h6>Password should be at least 8 characters</h6>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Confirm Password</label>
+                      {% if messages %}
+                              {% for message in messages %}
+                                  {%if "confirm_pw" in message.tags%}
+                                  <p{% if message.tags %} class="{{ message.tags }} error"{% endif %}>{{ message }}</p>
+                                {%endif%}
+                              {% endfor %}
+                      {% endif %}
+                      <input type="password" class="form-control" id="exampleInputPassword1" name="confirm_pw" placeholder="Confirm Password">
+                    </div>
+                    <!-- <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div> -->
+                    <button type="submit" class="btn btn-primary">Register</button>
+                  </form><br>
+
+              </div>
+              <div class="login col">
+                  <h1>Login</h1>
+                  <form action="/login" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="username">username</label>
+                      {% if messages %}
+                              {% for message in messages %}
+                                  {%if "login_user" in message.tags%}
+                                  <p{% if message.tags %} class="{{ message.tags }} error"{% endif %}>{{ message }}</p>
+                                {%endif%}
+                              {% endfor %}
+                      {% endif %}
+                      <input type="text" class="form-control" id="username" name="login_user" placeholder="username">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      {% if messages %}
+                              {% for message in messages %}
+                                  {%if "login_password" in message.tags%}
+                                  <p{% if message.tags %} class="{{ message.tags }} error"{% endif %}>{{ message }}</p>
+                                {%endif%}
+                              {% endfor %}
+                      {% endif %}
+                      <input type="password" class="form-control" id="exampleInputPassword1" name="login_password" placeholder="Password">
+                    </div>
+                    <!-- <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div> -->
+                    <button type="submit" class="btn btn-primary">Login</button>
+                  </form><br>
+                  <!-- {% if messages %}
+                          {% for message in messages %}
+                              <p{% if message.tags %} class="{{ message.tags }} error"{% endif %}>{{ message }}</p>
+                          {% endfor %}
+                  {% endif %} -->
+
+              </div>
+          </div>
+          <!-- <p>{{all_users}}</p> -->
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
